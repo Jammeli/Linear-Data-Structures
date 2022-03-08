@@ -1,0 +1,68 @@
+ALGORITHM Prob1Solu1Solu2
+VAR 
+    n: INTEGER;
+    m: INTEGER;
+    i: INTEGER;
+    j: INTEGER;
+    i1: INTEGER;
+    j1: INTEGER;
+    nb1:INTEGER;
+    nb2:INTEGER;
+    dim1:INTEGER;
+    dim2:INTEGER;
+    Find: Boolean;
+    Find1: Boolean;
+    sum: INTEGER:=0;
+    sum1: INTEGER:=0;   
+    htab1:HASH_TABLE<INTEGER,INTEGER>;
+    htab2:HASH_TABLE<INTEGER,INTEGER>;
+    Tab:ARRAY_OF_INTEGER[n];
+    Tab1:ARRAY_OF_INTEGER[m];
+    
+BEGIN
+// Problem 1 Solution with array.
+Write ("Write the length of the table N°1");
+Read(n);
+Write ("Write the length of the table N°2");
+Read(m);
+    FOR i FROM 0 TO n DO
+        j:=0;
+        Find:=TRUE;
+        WHILE (Tab[i]<>Tab1[j] AND j<m) DO
+            Find:=FALSE;
+            j++;
+        END_WHILE
+    IF (Find:=TRUE) THEN
+        sum:=sum+Tab[i];
+    END_IF
+    END_FOR
+    Write ("The sum of distinct elements is",sum);
+// Problem 1 Solution with HashTable.
+Write ("Write the length of the hash table N°1");
+Read(dim1);
+FOR i1 FROM 0 TO dim1 DO
+    Read(nb);
+    htab1.insert(i,nb);
+END_FOR
+Write ("Write the length of the hash table N°2");
+Read(dim2);
+FOR j1 FROM 0 TO dim2 DO
+    Read(nb1);
+    htab2.insert(j1,nb1);
+END_FOR
+FOR i1 FROM 0 TO dim1 DO
+    j1:=0;
+    Find1:=TRUE;
+    WHILE (htab1.get(i1)<>htab2.get(j1) AND j1<dim2) DO
+        Find:=FALSE;
+        j1++;
+    END_WHILE
+IF (Find1:=TRUE) THEN
+    sum1:=sum1+htab1.get(i1);
+END_IF
+END_FOR
+Write ("The sum of distinct elements is",sum1);
+
+END
+    
+    
